@@ -4,13 +4,13 @@ var apodService=require('../services/apod');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('fetchpicture');
+  res.redirect('fetchpicture');
 });
 // fetch a pic from NASA's astronomy picture of the day service
 router.get('/fetchpicture', function (req, res, next) {
     apodService(function (err, apod_data) {
         if (err) {
-            res.render('apod_error', {message: err.message, title: 'Error'});
+            res.render('apodError', {message: err.message, title: 'Error'});
 
         } else {
             res.render('index', {apod: apod_data, title: 'APOD for ${apod_data}'});
